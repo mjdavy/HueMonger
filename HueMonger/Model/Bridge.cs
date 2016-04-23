@@ -10,7 +10,13 @@ namespace HueMonger.Model
 {
     public class Bridge
     {
-        public static async Task<IEnumerable<string>> Initialize()
+        public async void Find(Action<IEnumerable<string>> callBack)
+        {
+            var ipList = await Find();
+            callBack(ipList);
+        }
+
+        public static async Task<IEnumerable<string>> Find()
         {
             IBridgeLocator locator = new HttpBridgeLocator();
 
@@ -23,7 +29,7 @@ namespace HueMonger.Model
         public static async Task<string> Register(string ip)
         {
             ILocalHueClient client = new LocalHueClient(ip);
-            var appKey = await client.RegisterAsync("huemonger", "mjdavy@hotmail.com");
+            var appKey = await client.RegisterAsync("huemonger", "huemonger");
             return appKey;
         }
     }

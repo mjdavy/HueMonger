@@ -18,6 +18,14 @@ namespace HueMonger.ViewModel
             }
         }
 
+        public ConfigViewModel Config
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ConfigViewModel>();
+            }
+        }
+
         static ViewModelLocator()
         {
             RegisterViewModels();
@@ -28,6 +36,7 @@ namespace HueMonger.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<ConfigViewModel>();
         }
 
         static void RegisterMessages()

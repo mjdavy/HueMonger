@@ -14,7 +14,10 @@ namespace HueMonger.ViewModel
     {
         public MainViewModel()
         {
-            Init();
+            //if (string.IsNullOrEmpty(AppSettings.Instance.UserKey))
+            //{
+            //    Register()
+            //}
         }
 
         public ObservableCollection<Light> Lights
@@ -22,13 +25,10 @@ namespace HueMonger.ViewModel
             get;
             set;
         }
-            
-        public async void Init()
+
+        public bool IsNotConfigured()
         {
-            var bridges = await Bridge.Initialize();
-            var myBridge = bridges.First();
-            var key = await Bridge.Register(myBridge);
-            
+            return (string.IsNullOrEmpty(AppSettings.Instance.UserKey));
         }
     }
 }
