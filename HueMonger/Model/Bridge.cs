@@ -42,6 +42,7 @@ namespace HueMonger.Model
                 var serializer = new DataContractSerializer(typeof(BridgeInfo));
                 var reader = XmlDictionaryReader.CreateTextReader(stream, new XmlDictionaryReaderQuotas());
                 var config = serializer.ReadObject(reader) as BridgeInfo;
+                config.IPAddress = ip;
                 return config;
             }
         }

@@ -30,5 +30,11 @@ namespace HueMonger.Model
             get;
             set;
         }
+
+        public string IPAddress
+        {
+            get;
+            set;
+        }
     }
 }

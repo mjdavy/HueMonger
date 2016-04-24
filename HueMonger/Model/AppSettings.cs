@@ -29,7 +29,15 @@ namespace HueMonger.Model
                 return "UserKey";
             }
         }
-       
+
+        public static string DeviceIPAddressSetting
+        {
+            get
+            {
+                return "DeviceIPAddress";
+            }
+        }
+
 
         public string UserKey
         {
@@ -40,6 +48,18 @@ namespace HueMonger.Model
             set
             {
                 AddOrUpdateValue(UserKeySetting, value);
+            }
+        }
+
+        public string DeviceIPAddress
+        {
+            get
+            {
+                return GetValueOrDefault<string>(DeviceIPAddressSetting, string.Empty);
+            }
+            set
+            {
+                AddOrUpdateValue(DeviceIPAddressSetting, value);
             }
         }
 

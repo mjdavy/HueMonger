@@ -1,4 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Views;
+using HueMonger.Model;
+using HueMonger.View;
 using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
@@ -8,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace HueMonger.ViewModel
 {
-    public class ViewModelLocator
+    public class ViewModelLocator 
     {
         public MainViewModel Main
         {
@@ -28,8 +32,15 @@ namespace HueMonger.ViewModel
 
         static ViewModelLocator()
         {
+            RegisterNavigationService();
             RegisterViewModels();
             RegisterMessages();
+        }
+
+        private static void RegisterNavigationService()
+        {
+            var navigationService = InitNavigationService();
+            SimpleIoc.Default.Register<INavigationService>(() => navigationService);
         }
 
         static void RegisterViewModels()
@@ -41,8 +52,18 @@ namespace HueMonger.ViewModel
 
         static void RegisterMessages()
         {
-            //var main = ServiceLocator.Current.GetInstance<MainViewModel>();
-            //Messenger.Default.Register<SearchMessage>(main, 1, main.OnSearch);
+            var main = ServiceLocator.Current.GetInstance<MainViewModel>();
+            Messenger.Default.Register<BridgeInfo>(main, main.OnConfigured);
+        }
+
+        protected static INavigationService InitNavigationService()
+        {
+            var service = new NavigationService();
+
+            service.Configure(typeof(MainViewModel).FullName, typeof(MainPage));
+            service.Configure(typeof(ConfigViewModel).FullName, typeof(ConfigPage));
+
+            return service;
         }
     }
 }
