@@ -69,8 +69,38 @@ namespace HueMonger.ViewModel
         public async void Configure()
         {
             ConfigInProgress = true;
-            ConfigMessage = "Press the button on your bridge...";
+            ConfigMessage = "Searching for Hue Bridges...";
             var ipList = await Bridge.Find();
+
+            var configList = new List<BridgeInfo>();
+            foreach(var ip in ipList)
+            {
+                var config = await Bridge.GetConfiguration(ip);
+                configList.Add(config);
+            }
+
+            switch (configList.Count())
+            {
+                case 0:
+                    ConfigMessage = "No Hue bridge found.";
+                    break;
+                case 1:
+                    ConfigureBridge(configList.First());
+                    break;
+                default:
+                    ChooseBridge(configList);
+                    break; 
+            }
+        }
+
+        private void ChooseBridge(List<BridgeInfo> configList)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ConfigureBridge(BridgeInfo config)
+        {
+            ConfigMessage = "Press the button on your bridge...";
         }
 
         public bool CanConfigure()
