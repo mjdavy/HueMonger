@@ -20,11 +20,11 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72">Main View</TextBlock>
-        <!--<ListView x:Name="LightSwitchListView"
+        <ListView x:Name="LightSwitchListView"
                     ItemTemplate="{StaticResource HueLightDataItemTemplate}"
                     ItemsSource="{Binding HueLights}" 
                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-                    Margin="10" />-->
+                    Margin="10" />
 
     </Grid>
 </Page>

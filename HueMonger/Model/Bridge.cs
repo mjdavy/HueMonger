@@ -52,6 +52,15 @@ namespace HueMonger.Model
             ILocalHueClient client = new LocalHueClient(ip);
             var appKey = await client.RegisterAsync("huemonger", "huemonger");
             return appKey;
+            
+        }
+
+        public static async Task<IEnumerable<Light>> GetLights(string ip, string appKey)
+        {
+            ILocalHueClient client = new LocalHueClient(ip);
+            client.Initialize(appKey);
+            var lights = await client.GetLightsAsync();
+            return lights;
         }
     }
 }

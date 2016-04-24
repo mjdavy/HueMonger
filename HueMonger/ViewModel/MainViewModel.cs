@@ -16,13 +16,9 @@ namespace HueMonger.ViewModel
     {
         public MainViewModel()
         {
-            //if (string.IsNullOrEmpty(AppSettings.Instance.UserKey))
-            //{
-            //    Register()
-            //}
         }
 
-        public ObservableCollection<Light> Lights
+        public ObservableCollection<LightViewModel> HueLights
         {
             get;
             set;
@@ -33,10 +29,22 @@ namespace HueMonger.ViewModel
             return (string.IsNullOrEmpty(AppSettings.Instance.UserKey));
         }
 
-        internal void OnConfigured(BridgeInfo bridgeInfo)
+        internal async void OnConfigured(BridgeInfo bridgeInfo)
         {
             var navService = ServiceLocator.Current.GetInstance<INavigationService>();
+            var lights = await HueMonger.Model.Bridge.GetLights(bridgeInfo.IPAddress, AppSettings.Instance.UserKey);
+            UpdateLights(lights);
             navService.NavigateTo(typeof(MainViewModel).FullName);
+        }
+
+        private void UpdateLights(IEnumerable<Light> lights)
+        {
+            this.HueLights = new ObservableCollection<LightViewModel>();
+            foreach (var light in lights)
+            {
+                var vm = new LightViewModel(light);
+                this.HueLights.Add(vm);
+            }
         }
     }
 }
