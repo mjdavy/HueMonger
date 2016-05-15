@@ -60,8 +60,10 @@ namespace HueMonger.ViewModel
         {
             var service = new NavigationService();
 
-            service.Configure(typeof(MainViewModel).FullName, typeof(MainPage));
-            service.Configure(typeof(ConfigViewModel).FullName, typeof(ConfigPage));
+            service.Configure("Main", typeof(MainPage));
+            service.Configure("Config1", typeof(ConfigPage));
+            service.Configure("Config2", typeof(ConfigPage2));
+            service.Configure("Config3", typeof(ConfigPage3));
 
             return service;
         }

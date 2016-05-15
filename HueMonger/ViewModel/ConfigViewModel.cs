@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Views;
 using HueMonger.Model;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace HueMonger.ViewModel
         private bool _configInProgress;
         private string _configMessage;
         private DispatcherTimer timer;
+        private INavigationService navigationService;
 
         public Visibility MessageVisibility
         {
@@ -64,8 +66,10 @@ namespace HueMonger.ViewModel
             private set;
         }
 
-        public ConfigViewModel()
+        
+        public ConfigViewModel(INavigationService navigationService)
         {
+            this.navigationService = navigationService;
             ConfigureCommand = new RelayCommand(Configure, CanConfigure);
             timer = new DispatcherTimer();
         }
@@ -78,6 +82,7 @@ namespace HueMonger.ViewModel
 
         public async void Configure()
         {
+            navigationService.NavigateTo("Config2");
             ConfigInProgress = true;
             ConfigMessage = "Searching for Hue Bridges...";
             var ipList = await Bridge.Find();
@@ -96,7 +101,6 @@ namespace HueMonger.ViewModel
                     break;
                 case 1:
                     ConfigureBridge(configList.First());
-                    
                     break;
                 default:
                     ChooseBridge(configList);

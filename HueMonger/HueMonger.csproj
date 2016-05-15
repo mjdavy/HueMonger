@@ -110,12 +110,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System\ComponentModel\DesignerCategoryAttribute.cs" />
     <Compile Include="System\SerializableAttribute.cs" />
+    <Compile Include="ViewModel\BridgeViewModel.cs" />
     <Compile Include="ViewModel\ConfigViewModel.cs" />
     <Compile Include="ViewModel\LightViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\ConfigPage.xaml.cs">
       <DependentUpon>ConfigPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ConfigPage2.xaml.cs">
+      <DependentUpon>ConfigPage2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ConfigPage3.xaml.cs">
+      <DependentUpon>ConfigPage3.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +152,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\ConfigPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ConfigPage2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ConfigPage3.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

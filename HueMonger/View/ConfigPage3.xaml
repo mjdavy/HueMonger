@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="HueMonger.View.ConfigPage"
+    x:Class="HueMonger.View.ConfigPage3"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:HueMonger.View"
@@ -12,6 +12,6 @@
     </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button x:Name="StartConfigButton" Command="{Binding ConfigureCommand}" FontSize="32" Content="Start" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <ListBox x:Name="BridgeListBox" Margin="12"/>
     </Grid>
 </Page>

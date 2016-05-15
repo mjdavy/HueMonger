@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="HueMonger.View.ConfigPage"
+    x:Class="HueMonger.View.ConfigPage2"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:HueMonger.View"
@@ -10,8 +10,10 @@
     <Page.DataContext>
         <Binding Path="Config" Source="{StaticResource Locator}"/>
     </Page.DataContext>
-
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button x:Name="StartConfigButton" Command="{Binding ConfigureCommand}" FontSize="32" Content="Start" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBlock
+        	FontSize="18" 
+        	Text="{Binding ConfigMessage}" VerticalAlignment="Center" Margin="0" HorizontalAlignment="Center"/>
     </Grid>
 </Page>
