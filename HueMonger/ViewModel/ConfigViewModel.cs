@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Views;
 using HueMonger.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -20,6 +21,8 @@ namespace HueMonger.ViewModel
         private string _configMessage;
         private DispatcherTimer timer;
         private INavigationService navigationService;
+        private ObservableCollection<BridgeViewModel> _bridgeList;
+        private BridgeViewModel _selectedBridge;
 
         public Visibility MessageVisibility
         {
@@ -57,6 +60,30 @@ namespace HueMonger.ViewModel
             {
                 Set(() => ConfigInProgress, ref _configInProgress, value);
                 ConfigureCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        public ObservableCollection<BridgeViewModel> BridgeList
+        {
+            get
+            {
+                return _bridgeList;
+            }
+            set
+            {
+                Set(() => BridgeList, ref _bridgeList, value);
+            }
+        }
+
+        public BridgeViewModel SelectedBridge
+        {
+            get
+            {
+                return _selectedBridge;
+            }
+            set
+            {
+                Set(() => SelectedBridge, ref _selectedBridge, value);
             }
         }
 
@@ -115,7 +142,13 @@ namespace HueMonger.ViewModel
 
         private void ChooseBridge(List<BridgeInfo> configList)
         {
-            throw new NotImplementedException();
+            this.BridgeList = new ObservableCollection<BridgeViewModel>();
+            foreach(var item in configList)
+            {
+                var bridgeVm = new BridgeViewModel(item);
+                this.BridgeList.Add(bridgeVm);
+            }
+            navigationService.NavigateTo("Config3");
         }
 
         private void ConfigureBridge(BridgeInfo config)
