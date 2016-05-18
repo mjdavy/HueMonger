@@ -84,6 +84,11 @@ namespace HueMonger.ViewModel
             set
             {
                 Set(() => SelectedBridge, ref _selectedBridge, value);
+                if (value != null)
+                {
+                    this.navigationService.NavigateTo("Config2");
+                    this.ConfigureBridge(value.Bridge);
+                }
             }
         }
 
@@ -168,7 +173,7 @@ namespace HueMonger.ViewModel
                 string ip = AppSettings.Instance.DeviceIPAddress;
                 AppSettings.Instance.UserKey = await Bridge.Register(ip);
                 timer.Stop();
-                Messenger.Default.Send<BridgeInfo>(this.BridgeConfiguration);
+                this.navigationService.NavigateTo("Main");
             }
             catch (Exception ex)
             {

@@ -1,4 +1,5 @@
 ﻿
+using HueMonger.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,5 +29,13 @@ namespace HueMonger
             this.InitializeComponent();
         }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainViewModel vm = this.DataContext as MainViewModel;
+            if (vm != null)
+            {
+                vm.Update();
+            }
+        }
     }
 }

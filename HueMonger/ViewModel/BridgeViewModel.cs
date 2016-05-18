@@ -17,6 +17,14 @@ namespace HueMonger.ViewModel
             _bridgeInfo = bridgeInfo;
         }
 
+        public BridgeInfo Bridge
+        {
+            get
+            {
+                return _bridgeInfo;
+            }
+        }
+
         public string FriendlyName
         {
             get

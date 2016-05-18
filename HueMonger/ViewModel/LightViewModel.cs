@@ -25,5 +25,13 @@ namespace HueMonger.ViewModel
             }
         }
 
+        public int Brightness
+        {
+            get
+            {
+                return light.State.Brightness / 255 * 100;
+            }
+        }
+
     }
 }

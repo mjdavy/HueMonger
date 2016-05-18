@@ -52,8 +52,8 @@ namespace HueMonger.ViewModel
 
         static void RegisterMessages()
         {
-            var main = ServiceLocator.Current.GetInstance<MainViewModel>();
-            Messenger.Default.Register<BridgeInfo>(main, main.OnConfigured);
+            //var main = ServiceLocator.Current.GetInstance<MainViewModel>();
+            //Messenger.Default.Register<BridgeInfo>(main, main.OnConfigured);
         }
 
         protected static INavigationService InitNavigationService()

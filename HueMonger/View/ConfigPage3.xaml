@@ -31,7 +31,7 @@
                 Margin="12"
                 ItemsSource="{Binding BridgeList}"
                 ItemTemplate="{StaticResource BridgeTemplate}" 
-                SelectedItem="{Binding SelectedBridge}"
+                SelectedItem="{Binding SelectedBridge, Mode=TwoWay}"
                 />
         </StackPanel>
     </Grid>

@@ -26,5 +26,6 @@ namespace HueMonger.View
         {
             this.InitializeComponent();
         }
+
     }
 }
