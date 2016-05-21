@@ -37,5 +37,10 @@ namespace HueMonger
                 vm.Update();
             }
         }
+
+        private void AdaptiveStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)
+        {
+
+        }
     }
 }

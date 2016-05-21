@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
+using Windows.Networking.Connectivity;
 
 namespace HueMonger.Model
 {
@@ -50,7 +51,9 @@ namespace HueMonger.Model
         public static async Task<string> Register(string ip)
         {
             ILocalHueClient client = new LocalHueClient(ip);
-            var appKey = await client.RegisterAsync("huemonger", "huemonger");
+            var hostInfo = NetworkInformation.GetHostNames().First();
+            var host = (hostInfo == null) ? "huemonger" : hostInfo.CanonicalName;
+            var appKey = await client.RegisterAsync("huemonger", host);
             return appKey;
             
         }
@@ -62,5 +65,6 @@ namespace HueMonger.Model
             var lights = await client.GetLightsAsync();
             return lights;
         }
+
     }
 }

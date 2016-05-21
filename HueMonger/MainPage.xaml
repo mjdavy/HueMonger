@@ -11,13 +11,36 @@
     >
 
     <Page.Resources>
-        <DataTemplate x:Key="HueLightDataItemTemplate" x:DataType="vm:LightViewModel">
-            <StackPanel Width="400" Margin="12">
-                <TextBlock Text="{Binding Name}" />
-                <Slider
+        <DataTemplate x:Key="HueLightDataItemTemplateNarrow" x:DataType="vm:LightViewModel">
+            <StackPanel Name="LightItemPanel">
+                <TextBlock Text="{Binding Name}" x:Name="LightName">
+                    <TextBlock.RenderTransform>
+                        <RotateTransform Angle="0"/>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <Slider Name="LightSlider"
+                    MinWidth="200"
                     Maximum="100" 
                     Minimum="0"
-                    Value="{Binding Brightness}"
+                    Value="{Binding Brightness, Mode=TwoWay}"
+                    />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="HueLightDataItemTemplateWide" x:DataType="vm:LightViewModel">
+            <StackPanel Name="LightItemPanel">
+                <StackPanel.RenderTransform>
+                    <RotateTransform Angle="270"></RotateTransform>
+                </StackPanel.RenderTransform>
+                <TextBlock Text="{Binding Name}" x:Name="LightName">
+                    <TextBlock.RenderTransform>
+                        <RotateTransform Angle="0"/>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <Slider Name="LightSlider"
+                    MinWidth="200"
+                    Maximum="100" 
+                    Minimum="0"
+                    Value="{Binding Brightness, Mode=TwoWay}"
                     />
             </StackPanel>
         </DataTemplate>
@@ -27,14 +50,50 @@
         <Binding Path="Main" Source="{StaticResource Locator}"/>
     </Page.DataContext>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <!--<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72">Main View</TextBlock>-->
+    <Grid x:Name="LayoutRoot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="AdaptiveStates" CurrentStateChanged="AdaptiveStates_CurrentStateChanged">
+                <VisualState x:Name="DefaultState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--<Setter Target="TextRotation.Angle" Value="90" />
+                        <Setter Target="LightItemPanel.Orientation" Value="Horizontal" />
+                        <Setter Target="LightSlider.MinWidth" Value="0" />
+                        <Setter Target="LightSlider.MinHeight" Value="200" />
+                        <Setter Target="LightSlider.Orientation" Value="Vertical" />-->
+                        <Setter Target="LightItemsPanel.Orientation" Value="Vertical" />
+                        <Setter Target="LayoutRoot.Background" Value="Yellow" />
+                        <Setter Target="LightSwitchList.ItemTemplate" Value="{StaticResource HueLightDataItemTemplateNarrow}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <ListBox x:Name="LightSwitchList"
-                    ItemTemplate="{StaticResource HueLightDataItemTemplate}"
+                    ItemTemplate="{StaticResource HueLightDataItemTemplateWide}"
                     ItemsSource="{Binding HueLights}" 
                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-                    Margin="12,24,12,12" 
-                 />
+                    Margin="12,0,12,12" Grid.Row="1" 
+                    >
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Name="LightItemsPanel" Orientation="Horizontal"></VirtualizingStackPanel>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+
+        <ToggleSwitch x:Name="toggleSwitch" Header="" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" d:LayoutOverrides="Height" Width="0" FontSize="32" MinWidth="250" HorizontalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" OffContent="All Lights Off" OnContent="All Lights On" IsOn="True"/>
 
     </Grid>
 </Page>
