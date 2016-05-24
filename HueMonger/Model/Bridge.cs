@@ -48,22 +48,36 @@ namespace HueMonger.Model
             }
         }
 
-        public static async Task<string> Register(string ip)
+        public static async Task<string> Register()
         {
+            string ip = AppSettings.Instance.DeviceIPAddress;
             ILocalHueClient client = new LocalHueClient(ip);
             var hostInfo = NetworkInformation.GetHostNames().First();
             var host = (hostInfo == null) ? "huemonger" : hostInfo.CanonicalName;
-            var appKey = await client.RegisterAsync("huemonger", host);
-            return appKey;
+            AppSettings.Instance.UserKey = await client.RegisterAsync("huemonger", host);
+            return AppSettings.Instance.UserKey;
             
         }
 
-        public static async Task<IEnumerable<Light>> GetLights(string ip, string appKey)
+        public static async Task<IEnumerable<Light>> GetLights()
         {
-            ILocalHueClient client = new LocalHueClient(ip);
-            client.Initialize(appKey);
+            ILocalHueClient client = new LocalHueClient(AppSettings.Instance.DeviceIPAddress, AppSettings.Instance.UserKey);
             var lights = await client.GetLightsAsync();
             return lights;
+        }
+
+        public static async Task SendLightsCommands(LightCommand command, IList<string> lights = null)
+        {
+            ILocalHueClient client = new LocalHueClient(AppSettings.Instance.DeviceIPAddress, AppSettings.Instance.UserKey);
+
+            if (lights == null)
+            {
+                await client.SendCommandAsync(command);
+            }
+            else
+            {
+                await client.SendCommandAsync(command, lights);
+            }
         }
 
     }

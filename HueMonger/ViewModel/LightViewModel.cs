@@ -32,7 +32,7 @@ namespace HueMonger.ViewModel
         {
             get
             {
-                return light.State.Brightness / 255 * 100;
+                return (int)((double)light.State.Brightness / 255.0 * 100.0);
             }
             set
             {
@@ -44,16 +44,9 @@ namespace HueMonger.ViewModel
             }
         }
 
-        public void SendLightCommands(LightCommand command)
+        public async void SendLightCommands(LightCommand command)
         {
-            SendLightsCommands(new List<string>() { this.light.Id }, command);
+            await Model.Bridge.SendLightsCommands(command, new List<string>() { light.Id });
         }
-
-        public async void SendLightsCommands(IList<string> lights, LightCommand command)
-        {
-            ILocalHueClient client = new LocalHueClient(AppSettings.Instance.DeviceIPAddress, AppSettings.Instance.UserKey);
-            await client.SendCommandAsync(command, lights);
-        }
-
     }
 }

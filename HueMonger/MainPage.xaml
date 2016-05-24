@@ -87,7 +87,15 @@
             </ListBox.ItemsPanel>
         </ListBox>
 
-        <ToggleSwitch x:Name="toggleSwitch" Header="" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" d:LayoutOverrides="Height" Width="0" FontSize="32" MinWidth="250" HorizontalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" OffContent="All Lights Off" OnContent="All Lights On" IsOn="True"/>
+        <ToggleSwitch x:Name="toggleSwitch" 
+                      Header="" HorizontalAlignment="Center" 
+                      VerticalAlignment="Center" 
+                      FontSize="32" 
+                      MinWidth="250" 
+                      HorizontalContentAlignment="Center" 
+                      OffContent="All Lights Off" 
+                      OnContent="All Lights On" 
+                      IsOn="{Binding AllLightsOn, Mode=TwoWay}"/>
 
     </Grid>
 </Page>

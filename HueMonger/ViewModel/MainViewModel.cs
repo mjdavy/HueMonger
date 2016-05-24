@@ -16,6 +16,7 @@ namespace HueMonger.ViewModel
     {
         private INavigationService navigationService;
         private ObservableCollection<LightViewModel> _hueLights;
+        private bool _lightsOn;
 
         public MainViewModel(INavigationService navigationService)
         {
@@ -34,6 +35,26 @@ namespace HueMonger.ViewModel
             }
         }
 
+        public bool AllLightsOn
+        {
+            get
+            {
+                return _lightsOn;
+            }
+            set
+            {
+                Set(() => AllLightsOn, ref _lightsOn, value);
+                SwitchLights();
+            }
+        }
+
+        public async void SwitchLights()
+        {
+            var cmd = new LightCommand();
+            cmd = (AllLightsOn) ? cmd.TurnOn() : cmd.TurnOff();
+            await Model.Bridge.SendLightsCommands(cmd);
+        }
+
         public bool IsNotConfigured()
         {
             return (string.IsNullOrEmpty(AppSettings.Instance.UserKey));
@@ -41,7 +62,7 @@ namespace HueMonger.ViewModel
 
         public async void Update()
         {
-            var lights = await HueMonger.Model.Bridge.GetLights(AppSettings.Instance.DeviceIPAddress, AppSettings.Instance.UserKey);
+            var lights = await HueMonger.Model.Bridge.GetLights();
             UpdateLights(lights);
         }
 

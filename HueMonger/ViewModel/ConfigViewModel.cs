@@ -170,8 +170,7 @@ namespace HueMonger.ViewModel
         {
             try
             {
-                string ip = AppSettings.Instance.DeviceIPAddress;
-                AppSettings.Instance.UserKey = await Bridge.Register(ip);
+                await Bridge.Register();
                 timer.Stop();
                 this.navigationService.NavigateTo("Main");
             }
