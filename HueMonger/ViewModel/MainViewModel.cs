@@ -48,10 +48,29 @@ namespace HueMonger.ViewModel
         private void UpdateLights(IEnumerable<Light> lights)
         {
             this.HueLights = new ObservableCollection<LightViewModel>();
-            foreach (var light in lights)
+
+            if (this.IsInDesignMode)
             {
-                var vm = new LightViewModel(light);
-                this.HueLights.Add(vm);
+                for (int i = 0; i < 10; i++)
+                {
+                    var name = string.Format("Test Light {0}", i);
+                    var light = new Light();
+                    light.Name = name;
+                    light.Id = name;
+                    light.State = new State();
+                    light.State.Brightness = 0;
+
+                    var vm = new LightViewModel(light);
+                    this.HueLights.Add(vm);
+                }
+            }
+            else
+            {
+                foreach (var light in lights)
+                {
+                    var vm = new LightViewModel(light);
+                    this.HueLights.Add(vm);
+                }
             }
         }
     }

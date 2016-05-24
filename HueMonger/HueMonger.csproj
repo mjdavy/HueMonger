@@ -124,6 +124,7 @@
     <Compile Include="View\ConfigPage3.xaml.cs">
       <DependentUpon>ConfigPage3.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\RotateContentControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -148,6 +149,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
