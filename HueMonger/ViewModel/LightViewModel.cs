@@ -4,6 +4,7 @@ using Q42.HueApi;
 using Q42.HueApi.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,9 +45,31 @@ namespace HueMonger.ViewModel
             }
         }
 
+        public int Color
+        {
+            get
+            {
+                return light.State.ColorTemperature ?? 0;
+            }
+            set
+            {
+                var cmd = new LightCommand();
+                cmd = (value == 0) ? cmd.TurnOff() : cmd.TurnOn();
+                cmd.ColorTemperature = value;
+                SendLightCommands(cmd);
+            }
+        }
+
         public async void SendLightCommands(LightCommand command)
         {
-            await Model.Bridge.SendLightsCommands(command, new List<string>() { light.Id });
+            try
+            {
+                await Model.Bridge.SendLightsCommands(command, new List<string>() { light.Id });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
     }
 }

@@ -21,6 +21,23 @@ namespace HueMonger.ViewModel
         public MainViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
+
+            if (IsInDesignMode)
+            {
+                this.HueLights = new ObservableCollection<LightViewModel>();
+                for (int i = 0; i < 10; i++)
+                {
+                    var name = string.Format("Test Light {0}", i);
+                    var light = new Light();
+                    light.Name = name;
+                    light.Id = name;
+                    light.State = new State();
+                    light.State.Brightness = 0;
+
+                    var vm = new LightViewModel(light);
+                    this.HueLights.Add(vm);
+                }
+            }
         }
 
         public ObservableCollection<LightViewModel> HueLights
@@ -70,29 +87,12 @@ namespace HueMonger.ViewModel
         {
             this.HueLights = new ObservableCollection<LightViewModel>();
 
-            if (this.IsInDesignMode)
+            foreach (var light in lights)
             {
-                for (int i = 0; i < 10; i++)
-                {
-                    var name = string.Format("Test Light {0}", i);
-                    var light = new Light();
-                    light.Name = name;
-                    light.Id = name;
-                    light.State = new State();
-                    light.State.Brightness = 0;
+                var vm = new LightViewModel(light);
+                this.HueLights.Add(vm);
+            }
 
-                    var vm = new LightViewModel(light);
-                    this.HueLights.Add(vm);
-                }
-            }
-            else
-            {
-                foreach (var light in lights)
-                {
-                    var vm = new LightViewModel(light);
-                    this.HueLights.Add(vm);
-                }
-            }
         }
     }
 }
