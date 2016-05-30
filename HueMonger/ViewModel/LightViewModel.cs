@@ -8,14 +8,16 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 
 namespace HueMonger.ViewModel
 {
     public class LightViewModel : ViewModelBase
     {
         private Light light;
-
+     
         public LightViewModel(Light light)
         {
             this.light = light;
@@ -45,19 +47,24 @@ namespace HueMonger.ViewModel
             }
         }
 
-        public int Color
+        public SolidColorBrush LightBrush
         {
             get
             {
-                return light.State.ColorTemperature ?? 0;
+                var rgb = light.State.ToRgb();
+                var R = Convert.ToByte(255 * rgb.R);
+                var G = Convert.ToByte(255 * rgb.G);
+                var B = Convert.ToByte(255 * rgb.B);
+
+                return new SolidColorBrush(Color.FromArgb(255,R,G,B));
             }
-            set
-            {
-                var cmd = new LightCommand();
-                cmd = (value == 0) ? cmd.TurnOff() : cmd.TurnOn();
-                cmd.ColorTemperature = value;
-                SendLightCommands(cmd);
-            }
+            //set
+            //{
+            //    var cmd = new LightCommand();
+            //    cmd = (value == 0) ? cmd.TurnOff() : cmd.TurnOn();
+            //    cmd.ColorTemperature = value;
+            //    SendLightCommands(cmd);
+            //}
         }
 
         public async void SendLightCommands(LightCommand command)

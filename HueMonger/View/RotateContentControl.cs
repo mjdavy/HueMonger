@@ -45,9 +45,9 @@ namespace HueMonger.View
 
         // Using a DependencyProperty as the backing store for Direction.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DirectionProperty =
-            DependencyProperty.Register("Direction", typeof(RotateDirection), typeof(RotateContentControl), new PropertyMetadata(RotateDirection.Normal, OnDirectionPropertyChanged));
+            DependencyProperty.Register("Direction", typeof(RotateDirection), typeof(RotateContentControl), new PropertyMetadata(RotateDirection.Normal, OnDirectiRaisePropertyChanged));
 
-        private static void OnDirectionPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnDirectiRaisePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as RotateContentControl;
 
