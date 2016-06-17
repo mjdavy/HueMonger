@@ -7,16 +7,21 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HueMonger", "HueMonger\HueM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HueMonger.test", "HueMonger.test\HueMonger.test.csproj", "{27646B26-B663-4E0A-94D0-45AD785F4AFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HueColorPicker", "HueColorPicker\HueColorPicker.csproj", "{CB411020-929D-437F-ACAA-79774B6AD71F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|ARM = Release|ARM
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D30C01BA-EF24-429B-8E42-CF11BC4C85DB}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{D30C01BA-EF24-429B-8E42-CF11BC4C85DB}.Debug|ARM.ActiveCfg = Debug|ARM
 		{D30C01BA-EF24-429B-8E42-CF11BC4C85DB}.Debug|ARM.Build.0 = Debug|ARM
 		{D30C01BA-EF24-429B-8E42-CF11BC4C85DB}.Debug|ARM.Deploy.0 = Debug|ARM
@@ -26,6 +31,7 @@ Global
 		{D30C01BA-EF24-429B-8E42-CF11BC4C85DB}.Debug|x86.ActiveCfg = Debug|x86
 		{D30C01BA-EF24-429B-8E42-CF11BC4C85DB}.Debug|x86.Build.0 = Debug|x86
 		{D30C01BA-EF24-429B-8E42-CF11BC4C85DB}.Debug|x86.Deploy.0 = Debug|x86
+		{D30C01BA-EF24-429B-8E42-CF11BC4C85DB}.Release|Any CPU.ActiveCfg = Release|x86
 		{D30C01BA-EF24-429B-8E42-CF11BC4C85DB}.Release|ARM.ActiveCfg = Release|ARM
 		{D30C01BA-EF24-429B-8E42-CF11BC4C85DB}.Release|ARM.Build.0 = Release|ARM
 		{D30C01BA-EF24-429B-8E42-CF11BC4C85DB}.Release|ARM.Deploy.0 = Release|ARM
@@ -35,6 +41,7 @@ Global
 		{D30C01BA-EF24-429B-8E42-CF11BC4C85DB}.Release|x86.ActiveCfg = Release|x86
 		{D30C01BA-EF24-429B-8E42-CF11BC4C85DB}.Release|x86.Build.0 = Release|x86
 		{D30C01BA-EF24-429B-8E42-CF11BC4C85DB}.Release|x86.Deploy.0 = Release|x86
+		{27646B26-B663-4E0A-94D0-45AD785F4AFB}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{27646B26-B663-4E0A-94D0-45AD785F4AFB}.Debug|ARM.ActiveCfg = Debug|ARM
 		{27646B26-B663-4E0A-94D0-45AD785F4AFB}.Debug|ARM.Build.0 = Debug|ARM
 		{27646B26-B663-4E0A-94D0-45AD785F4AFB}.Debug|ARM.Deploy.0 = Debug|ARM
@@ -44,6 +51,7 @@ Global
 		{27646B26-B663-4E0A-94D0-45AD785F4AFB}.Debug|x86.ActiveCfg = Debug|x86
 		{27646B26-B663-4E0A-94D0-45AD785F4AFB}.Debug|x86.Build.0 = Debug|x86
 		{27646B26-B663-4E0A-94D0-45AD785F4AFB}.Debug|x86.Deploy.0 = Debug|x86
+		{27646B26-B663-4E0A-94D0-45AD785F4AFB}.Release|Any CPU.ActiveCfg = Release|x86
 		{27646B26-B663-4E0A-94D0-45AD785F4AFB}.Release|ARM.ActiveCfg = Release|ARM
 		{27646B26-B663-4E0A-94D0-45AD785F4AFB}.Release|ARM.Build.0 = Release|ARM
 		{27646B26-B663-4E0A-94D0-45AD785F4AFB}.Release|ARM.Deploy.0 = Release|ARM
@@ -53,6 +61,22 @@ Global
 		{27646B26-B663-4E0A-94D0-45AD785F4AFB}.Release|x86.ActiveCfg = Release|x86
 		{27646B26-B663-4E0A-94D0-45AD785F4AFB}.Release|x86.Build.0 = Release|x86
 		{27646B26-B663-4E0A-94D0-45AD785F4AFB}.Release|x86.Deploy.0 = Release|x86
+		{CB411020-929D-437F-ACAA-79774B6AD71F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB411020-929D-437F-ACAA-79774B6AD71F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB411020-929D-437F-ACAA-79774B6AD71F}.Debug|ARM.ActiveCfg = Debug|ARM
+		{CB411020-929D-437F-ACAA-79774B6AD71F}.Debug|ARM.Build.0 = Debug|ARM
+		{CB411020-929D-437F-ACAA-79774B6AD71F}.Debug|x64.ActiveCfg = Debug|x64
+		{CB411020-929D-437F-ACAA-79774B6AD71F}.Debug|x64.Build.0 = Debug|x64
+		{CB411020-929D-437F-ACAA-79774B6AD71F}.Debug|x86.ActiveCfg = Debug|x86
+		{CB411020-929D-437F-ACAA-79774B6AD71F}.Debug|x86.Build.0 = Debug|x86
+		{CB411020-929D-437F-ACAA-79774B6AD71F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB411020-929D-437F-ACAA-79774B6AD71F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB411020-929D-437F-ACAA-79774B6AD71F}.Release|ARM.ActiveCfg = Release|ARM
+		{CB411020-929D-437F-ACAA-79774B6AD71F}.Release|ARM.Build.0 = Release|ARM
+		{CB411020-929D-437F-ACAA-79774B6AD71F}.Release|x64.ActiveCfg = Release|x64
+		{CB411020-929D-437F-ACAA-79774B6AD71F}.Release|x64.Build.0 = Release|x64
+		{CB411020-929D-437F-ACAA-79774B6AD71F}.Release|x86.ActiveCfg = Release|x86
+		{CB411020-929D-437F-ACAA-79774B6AD71F}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,6 +5,7 @@
     xmlns:local="using:HueMonger"
     xmlns:vm="using:HueMonger.ViewModel"
     xmlns:vw="using:HueMonger.View"
+    xmlns:hcp="using:HueColorPicker"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" 
@@ -350,21 +351,10 @@
             </ListBox.ItemsPanel>
         </ListBox>
 
-        <Border  Name="ColorPicker" BorderBrush="White" BorderThickness="1" Grid.Row="2" Height="300">
-            <Border.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Offset="0" Color="#FFFF0000"/>
-                    <GradientStop Offset="0.2" Color="#FFFFFF00"/>
-                    <GradientStop Offset="0.4" Color="#FF00FF00"/>
-                    <GradientStop Offset="0.6" Color="#FF0000FF"/>
-                    <GradientStop Offset="0.8" Color="#FFFF00FF"/>
-                    <GradientStop Offset="1" Color="#FFFF0000"/>
-                    <LinearGradientBrush.RelativeTransform>
-                        <CompositeTransform CenterY="0.5" CenterX="0.5" Rotation="90"/>
-                    </LinearGradientBrush.RelativeTransform>
-                </LinearGradientBrush>
-            </Border.Background>
-            
+        <Border  Name="ColorPicker" BorderBrush="White" BorderThickness="1" Grid.Row="2" Height="300" Margin="12">
+            <Viewbox>
+                <hcp:ColorPicker></hcp:ColorPicker>
+            </Viewbox>
         </Border>
        
 
