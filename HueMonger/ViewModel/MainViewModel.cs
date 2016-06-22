@@ -17,6 +17,7 @@ namespace HueMonger.ViewModel
         private INavigationService navigationService;
         private ObservableCollection<LightViewModel> _hueLights;
         private bool _lightsOn;
+        private LightViewModel _selectedLight;
 
         public MainViewModel(INavigationService navigationService)
         {
@@ -49,6 +50,27 @@ namespace HueMonger.ViewModel
             set
             {
                 Set(() => HueLights, ref _hueLights, value);
+            }
+        }
+
+        public LightViewModel SelectedLight
+        {
+            get
+            {
+                return _selectedLight;
+            }
+            set
+            {
+                if (_selectedLight != null)
+                {
+                    _selectedLight.Select(false);
+                }
+                Set(() => SelectedLight, ref _selectedLight, value);
+
+                if (_selectedLight != null)
+                {
+                    _selectedLight.Select(true);
+                }
             }
         }
 

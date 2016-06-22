@@ -244,7 +244,7 @@
                     <Slider x:Name="LightSlider"
                             Maximum="100" 
                             Minimum="0"
-                            Value="{Binding Brightness, Mode=TwoWay}"
+                            Value="{Binding Brightness, Mode=TwoWay}" 
                             />
                 </StackPanel>
 
@@ -266,10 +266,10 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel x:Name="LightItemPanel" Grid.Column="1">
                         <TextBlock Text="{Binding Name}" x:Name="LightName"/>
-                        <Slider x:Name="LightSlider"
+                        <Slider x:Name="LightSlider" 
                             Maximum="100" 
                             Minimum="0"
-                            Value="{Binding Brightness, Mode=TwoWay}"
+                            Value="{Binding Brightness, Mode=TwoWay}" 
                             />
                     </StackPanel>
 
@@ -334,7 +334,7 @@
         <ListBox x:Name="LightSwitchList"
                     ItemTemplate="{StaticResource HueLightDataItemTemplateWide}"
                     ItemsSource="{Binding HueLights}" 
-                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                    SelectedItem="{Binding SelectedLight, Mode=TwoWay}"
                     Margin="12,0,12,12" 
                     Grid.Row="1"
                     >
@@ -352,9 +352,9 @@
         </ListBox>
 
         <Border  Name="ColorPicker" BorderBrush="White" BorderThickness="1" Grid.Row="2" Height="300" Margin="12">
-            <Viewbox>
-                <hcp:ColorPicker></hcp:ColorPicker>
-            </Viewbox>
+            
+                <hcp:ColorPicker Margin="4"></hcp:ColorPicker>
+            
         </Border>
        
 

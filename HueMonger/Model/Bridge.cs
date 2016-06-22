@@ -66,6 +66,13 @@ namespace HueMonger.Model
             return lights;
         }
 
+        public static async Task<Light> GetLight(string id)
+        {
+            ILocalHueClient client = new LocalHueClient(AppSettings.Instance.DeviceIPAddress, AppSettings.Instance.UserKey);
+            var light = await client.GetLightAsync(id);
+            return light;
+        }
+
         public static async Task SendLightsCommands(LightCommand command, IList<string> lights = null)
         {
             ILocalHueClient client = new LocalHueClient(AppSettings.Instance.DeviceIPAddress, AppSettings.Instance.UserKey);
